@@ -13,8 +13,8 @@ class Chicken extends Animal
 
     function __construct(int $id) {
         parent::__construct($id);
-        $this->type = self::TYPE;
-        $this->prodType = self::PROD_TYPE;
+        $this->setType(self::TYPE);
+        $this->setProdType(self::PROD_TYPE);
     }
 
 }

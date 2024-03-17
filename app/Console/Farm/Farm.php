@@ -40,9 +40,7 @@ class Farm extends Command
         $this->farm = new FarmObj();
         $this->initFarm();
         $this->showAnimalType();
-        for ($day = 1; $day <= 7; $day++) {
-            $this->farm->day();
-        }
+        $this->doWeek();
 
         $this->showProduct();
         $this->farm->addAnimal('Cow');
@@ -88,7 +86,7 @@ class Farm extends Command
             }
             $reestr[$type]++;
         }
-        echo "--- Животные на ферме ---\n";
+        echo "--- Animals ---\n";
         foreach ($reestr as $type => $count) {
             echo $type, "=", $count,"\n";
         }
@@ -100,9 +98,16 @@ class Farm extends Command
     public function showProduct()
     {
         $reestr = [];
-        echo "--- Количество произведенных продуктов---\n";
+        echo "--- Products ---\n";
         foreach ($this->farm->product as $type => $val) {
             echo $type, "=", $val,"\n";
+        }
+    }
+
+    private function doWeek()
+    {
+        for ($day = 1; $day <= 7; $day++) {
+            $this->farm->day();
         }
     }
 }

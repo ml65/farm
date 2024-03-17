@@ -2,23 +2,21 @@
 
 namespace App\Models\Farm;
 
-class Animal extends FarmBase implements AnimalInterface
+class Animal  implements AnimalInterface
 {
-
     protected $id;
     protected $type;
-    protected const PROD_MAX = 12;
-    protected const PROD_MIN = 0;
     protected $prodType;
 
+    protected const PROD_MAX = 12;
+    protected const PROD_MIN = 0;
+
     /**
-     * @param int $id 
+     * @param int $id
      */
     public function __construct( int $id)
     {
-        if ($id) {
-            $this->id = $id;
-        }
+        $this->id = $id;
     }
 
     /**
@@ -38,21 +36,25 @@ class Animal extends FarmBase implements AnimalInterface
 
     }
 
-    /**
-     * @return string
-     */
     public function getType()
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
-    public function getProductType()
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    public function getProdType()
     {
         return $this->prodType;
-
     }
+
+    public function setProdType($prodtype)
+    {
+        $this->prodType = $prodtype;
+    }
+
 
 }

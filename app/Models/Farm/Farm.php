@@ -2,7 +2,7 @@
 
 namespace App\Models\Farm;
 
-class Farm extends FarmBase
+class Farm
 {
     /**
      * @var array AnimalInterface
@@ -11,9 +11,10 @@ class Farm extends FarmBase
     private $lastId;
     public $product;
 
-    public function __construct()
+    function __construct($id = 0)
     {
-        $this->lastId = 0;
+        $this->animals = [];
+        $this->lastId  = 0;
         $this->product = [];
     }
     /**
@@ -25,7 +26,7 @@ class Farm extends FarmBase
         $class = __NAMESPACE__ . '\\' . $animalType;
         $id = $this->lastId++ ?? 0;
         if ( file_exists(__DIR__ . '/'.$animalType .'.php')) {
-            $animal = new $class($id);
+            $animal          = new $class($id);
             $this->animals[] = $animal;
         } else {
             echo "not find class ",$animalType,"\n";
@@ -42,8 +43,5 @@ class Farm extends FarmBase
             }
             $this->product[$param['productType']] += $param['value'];
         }
-
     }
-
-
 }

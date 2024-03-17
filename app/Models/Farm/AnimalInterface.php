@@ -10,6 +10,8 @@ interface AnimalInterface
 
     public function getType();
 
-    public function getProductType();
+    public function setType($type);
+    public function getProdType();
 
+    public function setProdType($prodtype);
 }
