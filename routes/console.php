@@ -8,7 +8,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Artisan::command('farm:run', function(){
+Artisan::command('farm:life', function(){
     $this->comment('Processing');
     app(Farm::class)->runScenario();
     $this->comment('Processed');

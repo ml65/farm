@@ -23,7 +23,7 @@ class Farm extends Command
     /**
      * @var string
      */
-    protected $signature = 'farm:run';
+    protected $signature = 'farm:life';
 
     /**
      * The console command description.
