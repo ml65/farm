@@ -5,6 +5,8 @@ namespace App\Console\Farm;
 use App\Models\Farm\Animal;
 use Illuminate\Console\Command;
 use App\Models\Farm\Farm as FarmObj;
+use App\Models\Farm\Factory\AnimalFactory;
+use App\Models\Farm\Service\ProductCollector;
 
 class Farm extends Command
 {
@@ -37,7 +39,9 @@ class Farm extends Command
      */
     public function runScenario()
     {
-        $this->farm = new FarmObj();
+        $animalFactory = new AnimalFactory();
+        $productCollector = new ProductCollector();
+        $this->farm = new FarmObj($animalFactory, $productCollector);
         $this->initFarm();
         $this->showAnimalType();
         $this->doWeek();
@@ -78,7 +82,7 @@ class Farm extends Command
     public function showAnimalType()
     {
         $reestr = [];
-        foreach ($this->farm->animals as $animal) {
+        foreach ($this->farm->getAnimals() as $animal) {
             /* @var $animal Animal */
             $type = $animal->getType();
             if (!isset($reestr[$type])) {
@@ -97,9 +101,8 @@ class Farm extends Command
      */
     public function showProduct()
     {
-        $reestr = [];
         echo "--- Products ---\n";
-        foreach ($this->farm->product as $type => $val) {
+        foreach ($this->farm->getProducts() as $type => $val) {
             echo $type, "=", $val,"\n";
         }
     }
